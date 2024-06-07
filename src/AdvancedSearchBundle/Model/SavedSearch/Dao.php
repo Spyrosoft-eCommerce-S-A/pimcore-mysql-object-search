@@ -31,9 +31,9 @@ class Dao extends Model\Dao\AbstractDao
      */
     public function getById($id): void
     {
-        $data = $this->db->fetchRow(
+        $data = $this->db->fetchAssociative(
             'SELECT * FROM ' . $this->db->quoteIdentifier(self::TABLE_NAME) . ' WHERE id = ?',
-            $id
+            [$id]
         );
 
         if (!$data['id']) {
@@ -68,7 +68,12 @@ class Dao extends Model\Dao\AbstractDao
                 }
             }
 
-            $this->db->insertOrUpdate(self::TABLE_NAME, $data);
+            if ($data['id']) {
+                $this->db->update(self::TABLE_NAME, $data, ['id' => $data['id']]);
+            } else {
+                $this->db->insert(self::TABLE_NAME, $data);
+            }
+
 
             $lastInsertId = $this->db->lastInsertId();
             if (!$this->model->getId() && $lastInsertId) {

@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/admin")
  * @SuppressWarnings(PHPMD)
  */
-class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminController
+class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\Admin\ElementControllerBase
 {
     /**
      * @param Request $request
@@ -115,7 +115,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
 
         if ($request->get('data')) {
             return $this->forward(
-                'PimcoreAdminBundle:Admin/DataObject/DataObject:gridProxy',
+                'Pimcore\Bundle\AdminBundle\Controller\Admin\DataObject\DataObjectController::gridProxyAction',
                 [],
                 $request->query->all()
             );
@@ -358,7 +358,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
                 $helperColumns = [];
 
                 foreach ($config['gridConfig']['columns'] as &$column) {
-                    if (!$column['isOperator']) {
+                    if (true || !$column['isOperator']) {
                         $fieldDefinition = $classDefinition->getFieldDefinition($column['key']);
                         if ($fieldDefinition) {
                             $width = $column['layout']['width'] ?? null;
@@ -378,7 +378,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\AdminContro
                 }
 
                 // store the saved search columns in the session, otherwise they won't work
-                Session::useSession(function (AttributeBagInterface $session) use ($helperColumns): void {
+                Session::useBag($request->getSession(), function (AttributeBagInterface $session) use ($helperColumns): void {
                     $existingColumns = $session->get('helpercolumns', []);
                     $helperColumns = array_merge($existingColumns, $helperColumns);
                     $session->set('helpercolumns', $helperColumns);

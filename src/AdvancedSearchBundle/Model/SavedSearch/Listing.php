@@ -33,7 +33,7 @@ class Listing extends Model\Listing\AbstractListing
      * @param mixed $key
      * @return bool
      */
-    public function isValidOrderKey($key)
+    public function isValidOrderKey(string $key): bool
     {
         return true;
     }

@@ -4,7 +4,6 @@ namespace DivanteLtd\AdvancedSearchBundle\Service;
 
 use DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\IFieldDefinitionAdapter;
 use DivanteLtd\AdvancedSearchBundle\Filter\FieldSelectionInformation;
-use Pimcore\Bundle\AdminBundle\Security\User\TokenStorageUserResolver;
 use Pimcore\Model\DataObject\ClassDefinition;
 use Pimcore\Model\DataObject\Fieldcollection\Definition;
 use Pimcore\Model\DataObject\Listing;
@@ -111,15 +110,12 @@ class FilterService
      * Service constructor.
      *
      * @param LoggerInterface $logger
-     * @param TokenStorageUserResolver $userResolver
      * @param ContainerInterface $filterLocator
      */
     public function __construct(
         LoggerInterface $logger,
-        TokenStorageUserResolver $userResolver,
         ContainerInterface $filterLocator
     ) {
-        $this->user = $userResolver->getUser();
         $this->logger = $logger;
         $this->filterLocator = $filterLocator;
     }
@@ -135,7 +131,7 @@ class FilterService
     public function getFieldDefinitionAdapter(ClassDefinition\Data $fieldDefinition, bool $considerInheritance)
     {
         $adapter = null;
-        $fieldType = $fieldDefinition->fieldtype;
+        $fieldType = $fieldDefinition->getFieldType();
 
         if ($fieldDefinition instanceof ClassDefinition\Data\CalculatedValue) {
             $fieldType = $this->getCalculatedValueFieldType($fieldDefinition);
