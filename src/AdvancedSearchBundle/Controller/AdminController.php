@@ -130,7 +130,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\Admin\Eleme
 
             $start = 0;
             $limit = 20;
-            $sortBy = 'o_id';
+            //$sortBy = 'o_id';
             $sortDirection = 'ASC';
 
             if ($request->get('limit')) {
@@ -171,7 +171,7 @@ class AdminController extends \Pimcore\Bundle\AdminBundle\Controller\Admin\Eleme
             $list->setObjectTypes(['object', 'folder', 'variant']);
             $list = $service->doFilter($list, $data['conditions'] ?? []);
 
-            $list->setOrderKey($sortBy);
+            //$list->setOrderKey($sortBy);
             $list->setOrder($sortDirection);
             $list->setOffset($start);
             $list->setLimit($limit);

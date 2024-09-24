@@ -4,6 +4,8 @@ namespace DivanteLtd\AdvancedSearchBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Installer\InstallerInterface;
+use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
+use Pimcore\Extension\Bundle\Traits\BundleAdminClassicTrait;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
 /**
@@ -11,9 +13,10 @@ use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
  *
  * @package DivanteLtd\AdvancedSearchBundle
  */
-class AdvancedSearchBundle extends AbstractPimcoreBundle
+class AdvancedSearchBundle extends AbstractPimcoreBundle implements PimcoreBundleAdminClassicInterface
 {
     use PackageVersionTrait;
+    use BundleAdminClassicTrait;
 
     /**
      * @return Installer

@@ -1,12 +1,12 @@
 pimcore.registerNS("pimcore.bundle.advancedSearch");
 
-pimcore.bundle.advancedSearch = Class.create(pimcore.plugin.admin, {
+pimcore.bundle.advancedSearch = Class.create({
     getClassName: function () {
         return "pimcore.bundle.advancedSearch";
     },
 
     initialize: function () {
-        pimcore.plugin.broker.registerPlugin(this);
+        document.addEventListener(pimcore.events.pimcoreReady, this.pimcoreReady.bind(this));
     },
 
     pimcoreReady: function (params, broker) {
