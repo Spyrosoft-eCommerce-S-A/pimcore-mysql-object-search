@@ -9,7 +9,7 @@
 
 namespace DivanteLtd\AdvancedSearchBundle\Filter\FieldDefinitionAdapter\Operators;
 
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Trait CharacterOperatorsTrait

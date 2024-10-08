@@ -3,6 +3,9 @@
 namespace DivanteLtd\AdvancedSearchBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
+use Pimcore\Extension\Bundle\Installer\InstallerInterface;
+use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
+use Pimcore\Extension\Bundle\Traits\BundleAdminClassicTrait;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
 
 /**
@@ -10,14 +13,15 @@ use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
  *
  * @package DivanteLtd\AdvancedSearchBundle
  */
-class AdvancedSearchBundle extends AbstractPimcoreBundle
+class AdvancedSearchBundle extends AbstractPimcoreBundle implements PimcoreBundleAdminClassicInterface
 {
     use PackageVersionTrait;
+    use BundleAdminClassicTrait;
 
     /**
      * @return Installer
      */
-    public function getInstaller()
+    public function getInstaller(): ?InstallerInterface
     {
         return $this->container->get(Installer::class);
     }
@@ -25,7 +29,7 @@ class AdvancedSearchBundle extends AbstractPimcoreBundle
     /**
      * @return array
      */
-    public function getJsPaths()
+    public function getJsPaths(): array
     {
         return [
             '/bundles/advancedsearch/js/pimcore/startup.js',
@@ -61,7 +65,7 @@ class AdvancedSearchBundle extends AbstractPimcoreBundle
     /**
      * @return array
      */
-    public function getCssPaths()
+    public function getCssPaths(): array
     {
         return [
             '/bundles/advancedsearch/css/admin.css',

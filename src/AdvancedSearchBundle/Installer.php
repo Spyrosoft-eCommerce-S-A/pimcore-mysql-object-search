@@ -9,12 +9,13 @@ use Doctrine\DBAL\Migrations\Version;
 use Doctrine\DBAL\Schema\Schema;
 use Pimcore\Config;
 use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
+use Pimcore\Extension\Bundle\Installer\InstallerInterface;
 
 /**
  * Class Installer
  * @package DivanteLtd\AdvancedSearchBundle
  */
-class Installer extends AbstractInstaller
+class Installer extends AbstractInstaller implements InstallerInterface
 {
     const QUEUE_TABLE_NAME = 'bundle_advancedsearch_update_queue';
 
@@ -28,11 +29,11 @@ class Installer extends AbstractInstaller
      * @param Version $version
      * @return bool
      */
-    public function install()
+    public function install(): void
     {
         $this->installDatabase();
 
-        return $this->isInstalled();
+        //return $this->isInstalled();
     }
 
     /**
@@ -40,7 +41,7 @@ class Installer extends AbstractInstaller
      * @param Version $version
      * @return void
      */
-    public function uninstall()
+    public function uninstall(): void
     {
     }
 
@@ -89,13 +90,13 @@ class Installer extends AbstractInstaller
     /**
      * @return bool
      */
-    public function isInstalled()
+    public function isInstalled(): bool
     {
         $result = null;
 
         try {
             if (Config::getSystemConfiguration()) {
-                $result = \Pimcore\Db::get()->fetchAll("SHOW TABLES LIKE '" . self::QUEUE_TABLE_NAME . "';");
+                $result = \Pimcore\Db::get()->fetchAllAssociative("SHOW TABLES LIKE '" . self::QUEUE_TABLE_NAME . "';");
             }
         } catch (\Exception $e) {
             return false;
@@ -104,12 +105,12 @@ class Installer extends AbstractInstaller
         return !empty($result);
     }
 
-    public function canBeInstalled()
+    public function canBeInstalled(): bool
     {
         return true;
     }
 
-    public function canBeUninstalled()
+    public function canBeUninstalled(): bool
     {
         return false;
     }

@@ -17,11 +17,10 @@ Similar to Pimcore's Advanced Object Search, but does not need Elasticsearch
 	- [Contributing](#contributing)
 	- [Licence](#licence)
 	- [Standards & Code Quality](#standards--code-quality)
-	- [About Authors](#about-authors)
 
 ## Compatibility
 
-This module is compatible with Pimcore 5.5.0 and higher.
+This module is compatible with Pimcore 11 and higher.
 
 ## Installing/Getting started
 
@@ -55,24 +54,10 @@ PIMCORE_TEST_DB_DSN="mysql://username:password@localhost/pimcore_test" \
 If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 ## Licence 
-CoreShop VsBridge source code is completely free and released under the 
+This source code is completely free and released under the 
 [GNU General Public License v3.0](https://github.com/DivanteLtd/divante-ltd/pimcore-mysql-object-search/blob/master/LICENSE).
+Respository forked from DivanteLtd/pimcore-mysql-object-search
 
 ## Standards & Code Quality
 This module respects all Pimcore 5 code quality rules and our own PHPCS and PHPMD rulesets.
 
-## About Authors
-![Divante-logo](http://divante.co/logo-HG.png "Divante")
-
-We are a Software House from Europe, existing from 2008 and employing about 150 people. Our core competencies are built 
-around Magento, Pimcore and bespoke software projects (we love Symfony3, Node.js, Angular, React, Vue.js). 
-We specialize in sophisticated integration projects trying to connect hardcore IT with good product design and UX.
-
-We work for Clients like INTERSPORT, ING, Odlo, Onderdelenwinkel and CDP, the company that produced The Witcher game. 
-We develop two projects: [Open Loyalty](http://www.openloyalty.io/ "Open Loyalty") - an open source loyalty program 
-and [Vue.js Storefront](https://github.com/DivanteLtd/vue-storefront "Vue.js Storefront").
-
-We are part of the OEX Group which is listed on the Warsaw Stock Exchange. Our annual revenue has been growing at a 
-minimum of about 30% year on year.
-
-Visit our website [Divante.co](https://divante.co/ "Divante.co") for more information.

@@ -37,7 +37,7 @@ pimcore.bundle.advancedSearch.searchConfig.resultPanel = Class.create(pimcore.ob
 
         if(!this.portletMode) {
             this.extensionBag = new pimcore.bundle.advancedSearch.searchConfig.ResultPanelExtensionBag(this, typeof gridConfigData != 'undefined' ? gridConfigData.predefinedFilter : null);
-            pimcore.plugin.broker.fireEvent("onAdvancedObjectSearchResult", this.extensionBag);
+            //pimcore.plugin.broker.fireEvent("onAdvancedObjectSearchResult", this.extensionBag);
         }
 
         this.batchPrepareUrl = Routing.generate('pimcore_admin_dataobject_dataobjecthelper_getbatchjobs');

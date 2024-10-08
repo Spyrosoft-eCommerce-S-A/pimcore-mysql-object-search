@@ -28,9 +28,9 @@ class Dao extends Model\Listing\Dao\AbstractDao
      *
      * @return array
      */
-    public function load()
+    public function load(): array
     {
-        $searchIds = $this->db->fetchCol(
+        $searchIds = $this->db->fetchFirstColumn(
             'SELECT id FROM ' . $this->db->quoteIdentifier(SavedSearch\Dao::TABLE_NAME) . ' ' .
             $this->getCondition() . $this->getOrder() . $this->getOffsetLimit(),
             $this->model->getConditionVariables()
@@ -63,7 +63,7 @@ class Dao extends Model\Listing\Dao\AbstractDao
     /**
      * @return int
      */
-    public function getTotalCount()
+    public function getTotalCount(): int
     {
         try {
             $amount = (int) $this->db->fetchOne(
